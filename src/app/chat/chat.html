@@ -1,0 +1,58 @@
+<div class="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+
+  <!-- Chat box -->
+  <div class="w-full max-w-4xl h-[80vh] bg-white rounded-2xl shadow-xl flex flex-col overflow-hidden">
+
+    <!-- Header -->
+    <div class="bg-indigo-600 text-white p-4 flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-white text-indigo-600 flex items-center justify-center font-bold">
+        C
+      </div>
+      <div>
+        <p class="font-semibold">Chat App</p>
+        <p class="text-sm opacity-80">Online</p>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
+      <div
+        *ngFor="let msg of messages"
+        class="flex"
+        [class.justify-end]="msg.sender === 'me'"
+        [class.justify-start]="msg.sender === 'other'"
+      >
+        <div
+          class="px-4 py-2 rounded-xl max-w-xs shadow"
+          [ngClass]="{
+            'bg-indigo-600 text-white': msg.sender === 'me',
+            'bg-white text-gray-800': msg.sender === 'other'
+          }"
+        >
+          {{ msg.text }}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Input -->
+    <div class="p-4 border-t flex gap-3 bg-white">
+      <input
+        [(ngModel)]="messageText"
+        (keyup.enter)="sendMessage()"
+        placeholder="Type a message..."
+        class="flex-1 border rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-indigo-400"
+      >
+
+      <button
+        (click)="sendMessage()"
+        class="bg-indigo-600 text-white px-6 rounded-lg hover:bg-indigo-700"
+      >
+        Send
+      </button>
+    </div>
+
+  </div>
+
+</div>
+

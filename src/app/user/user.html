@@ -1,0 +1,46 @@
+<!-- <h1>TODO LIST</h1>
+<input
+  class="border-2 rounded-2xl w-80"
+  type="text"
+  [(ngModel)]="task"
+  placeholder="Enter Your Task"
+/>
+<button class="border-2 rounded-2xl w-30 ml-6" (click)="addTask()">Add Task</button>
+
+@for (task of taskList; track task.id) {
+  <ul class="flex gap-10 ">
+    <li>
+      {{ task.id }}
+    </li>
+    <li>
+      {{ task.task }}
+    </li>
+    <li>
+      <button (click)="delTodo()" >Delete</button>
+    </li>
+  </ul>
+} -->
+
+<h1>TODO LIST</h1>
+<input
+  class="border-2 rounded-2xl w-80"
+  type="text"
+  [(ngModel)]="task"
+  placeholder="Enter Your Task"
+/>
+<button class="border-2 rounded-2xl w-30 ml-6" (click)="addTask()">Add Task</button>
+
+@for (task of taskList; track task.id; let i = $index) {
+  <ul class="flex gap-10 ">
+    <li>
+      {{ task.id }}
+    </li>
+    <li>
+      {{ task.task }}
+    </li>
+    <li>
+      <!-- index pass kiya -->
+      <button (click)="delTodo(i)">Delete</button>
+    </li>
+  </ul>
+}
